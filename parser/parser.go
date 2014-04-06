@@ -65,9 +65,6 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 		parsed := XMLMessage{}
 		data.Decode(&parsed)
 
-		fmt.Println(len(parsed.DataSet.Series), len(parsed.DataSet.Series[0].SeriesKey.Value))
-		fmt.Println(parsed.DataSet.Series[0].Obs[0])
-
 		table := make(map[string]map[int]string)
 		minYear := 1000000
 		maxYear := 0
