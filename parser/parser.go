@@ -65,18 +65,24 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 		parsed := XMLMessage{}
 		data.Decode(&parsed)
 
-		table := make(map[string]map[int]string)
+		table := make(map[string]map[string]map[int]string)
 		minYear := 1000000
 		maxYear := 0
 
 		for _, series := range parsed.DataSet.Series {
 			row := make(map[int]string)
-			country := ""
 
+			var country string
+			var variable string
+			var unit string
 			for _, val := range series.SeriesKey.Value {
-				if val.Concept == "COU" {
+				switch {
+				case val.Concept == "COU":
 					country = val.Value
-					break
+				case val.Concept == "VAR":
+					variable = val.Value
+				case val.Concept == "UNIT":
+					unit = val.Value
 				}
 			}
 
@@ -95,28 +101,34 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 					maxYear = int(year)
 				}
 			}
-			table[country] = row
+
+			if table[variable+"-"+unit] == nil {
+				table[variable+"-"+unit] = make(map[string]map[int]string)
+			}
+			table[variable+"-"+unit][country] = row
 		}
 
-		csv, err := os.Create(info.Name() + ".csv")
-		defer csv.Close()
-		if err != nil {
-			fmt.Println(err)
-		}
+		for fname, data := range table {
+			csv, err := os.Create(info.Name() + "-" + fname + ".csv")
+			defer csv.Close()
+			if err != nil {
+				fmt.Println(err)
+			}
 
-		//header
-		fmt.Fprint(csv, "Country")
-		for y := minYear; y < maxYear; y++ {
-			fmt.Fprint(csv, ",", y)
-		}
-		fmt.Fprint(csv, "\n")
-
-		for cou, row := range table {
-			fmt.Fprint(csv, cou)
+			//header
+			fmt.Fprint(csv, "Country")
 			for y := minYear; y < maxYear; y++ {
-				fmt.Fprint(csv, ",", row[y])
+				fmt.Fprint(csv, ",", y)
 			}
 			fmt.Fprint(csv, "\n")
+
+			for cou, row := range data {
+				fmt.Fprint(csv, cou)
+				for y := minYear; y < maxYear; y++ {
+					fmt.Fprint(csv, ",", row[y])
+				}
+				fmt.Fprint(csv, "\n")
+			}
 		}
 	}
 	return err
