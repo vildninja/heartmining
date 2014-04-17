@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process version="6.0.002">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="6.0.002" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="6.0.002" expanded="true" height="60" name="Read CSV" width="90" x="45" y="75">
+        <parameter key="csv_file" value="/home/niels/git/heartmining/heart-disease/cleveland-linebreak-fixed.data"/>
+        <parameter key="column_separators" value=";"/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="false"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="date_format" value=""/>
+        <parameter key="first_row_as_names" value="false"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="att1.true.integer.attribute"/>
+          <parameter key="1" value="att2.true.integer.attribute"/>
+          <parameter key="2" value="att3.true.integer.attribute"/>
+          <parameter key="3" value="att4.true.integer.attribute"/>
+          <parameter key="4" value="att5.true.integer.attribute"/>
+          <parameter key="5" value="att6.true.integer.attribute"/>
+          <parameter key="6" value="att7.true.integer.attribute"/>
+          <parameter key="7" value="att8.true.integer.attribute"/>
+          <parameter key="8" value="att9.true.integer.attribute"/>
+          <parameter key="9" value="att10.true.integer.attribute"/>
+          <parameter key="10" value="att11.true.integer.attribute"/>
+          <parameter key="11" value="att12.true.integer.attribute"/>
+          <parameter key="12" value="att13.true.integer.attribute"/>
+          <parameter key="13" value="att14.true.integer.attribute"/>
+          <parameter key="14" value="att15.true.integer.attribute"/>
+          <parameter key="15" value="att16.true.integer.attribute"/>
+          <parameter key="16" value="att17.true.integer.attribute"/>
+          <parameter key="17" value="att18.true.integer.attribute"/>
+          <parameter key="18" value="att19.true.integer.attribute"/>
+          <parameter key="19" value="att20.true.integer.attribute"/>
+          <parameter key="20" value="att21.true.integer.attribute"/>
+          <parameter key="21" value="att22.true.integer.attribute"/>
+          <parameter key="22" value="att23.true.integer.attribute"/>
+          <parameter key="23" value="att24.true.integer.attribute"/>
+          <parameter key="24" value="att25.true.integer.attribute"/>
+          <parameter key="25" value="att26.true.integer.attribute"/>
+          <parameter key="26" value="att27.true.integer.attribute"/>
+          <parameter key="27" value="att28.true.integer.attribute"/>
+          <parameter key="28" value="att29.true.integer.attribute"/>
+          <parameter key="29" value="att30.true.integer.attribute"/>
+          <parameter key="30" value="att31.true.integer.attribute"/>
+          <parameter key="31" value="att32.true.integer.attribute"/>
+          <parameter key="32" value="att33.true.integer.attribute"/>
+          <parameter key="33" value="att34.true.integer.attribute"/>
+          <parameter key="34" value="att35.true.integer.attribute"/>
+          <parameter key="35" value="att36.true.integer.attribute"/>
+          <parameter key="36" value="att37.true.integer.attribute"/>
+          <parameter key="37" value="att38.true.integer.attribute"/>
+          <parameter key="38" value="att39.true.integer.attribute"/>
+          <parameter key="39" value="att40.true.integer.attribute"/>
+          <parameter key="40" value="att41.true.integer.attribute"/>
+          <parameter key="41" value="att42.true.integer.attribute"/>
+          <parameter key="42" value="att43.true.integer.attribute"/>
+          <parameter key="43" value="att44.true.integer.attribute"/>
+          <parameter key="44" value="att45.true.integer.attribute"/>
+          <parameter key="45" value="att46.true.integer.attribute"/>
+          <parameter key="46" value="att47.true.integer.attribute"/>
+          <parameter key="47" value="att48.true.integer.attribute"/>
+          <parameter key="48" value="att49.true.integer.attribute"/>
+          <parameter key="49" value="att50.true.integer.attribute"/>
+          <parameter key="50" value="att51.true.integer.attribute"/>
+          <parameter key="51" value="att52.true.integer.attribute"/>
+          <parameter key="52" value="att53.true.integer.attribute"/>
+          <parameter key="53" value="att54.true.integer.attribute"/>
+          <parameter key="54" value="att55.true.integer.attribute"/>
+          <parameter key="55" value="att56.true.integer.attribute"/>
+          <parameter key="56" value="att57.true.integer.attribute"/>
+          <parameter key="57" value="att58.true.polynominal.attribute"/>
+          <parameter key="58" value="att59.true.integer.attribute"/>
+          <parameter key="59" value="att60.true.integer.attribute"/>
+          <parameter key="60" value="att61.true.integer.attribute"/>
+          <parameter key="61" value="att62.true.integer.attribute"/>
+          <parameter key="62" value="att63.true.integer.attribute"/>
+          <parameter key="63" value="att64.true.integer.attribute"/>
+          <parameter key="64" value="att65.true.integer.attribute"/>
+          <parameter key="65" value="att66.true.integer.attribute"/>
+          <parameter key="66" value="att67.true.integer.attribute"/>
+          <parameter key="67" value="att68.true.integer.attribute"/>
+          <parameter key="68" value="att69.true.integer.attribute"/>
+          <parameter key="69" value="att70.true.integer.attribute"/>
+          <parameter key="70" value="att71.true.integer.attribute"/>
+          <parameter key="71" value="att72.true.integer.attribute"/>
+          <parameter key="72" value="att73.true.integer.attribute"/>
+          <parameter key="73" value="att74.true.integer.attribute"/>
+          <parameter key="74" value="att75.true.integer.attribute"/>
+          <parameter key="75" value="att76.true.attribute_value.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="true"/>
+        <parameter key="datamanagement" value="double_array"/>
+      </operator>
+      <operator activated="true" class="remove_useless_attributes" compatibility="6.0.002" expanded="true" height="76" name="Remove Useless Attributes" width="90" x="179" y="75">
+        <parameter key="numerical_min_deviation" value="0.01"/>
+        <parameter key="nominal_useless_above" value="1.0"/>
+        <parameter key="nominal_remove_id_like" value="false"/>
+        <parameter key="nominal_useless_below" value="0.0"/>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="6.0.002" expanded="true" height="76" name="Set Role" width="90" x="313" y="75">
+        <parameter key="attribute_name" value="att58"/>
+        <parameter key="target_role" value="label"/>
+        <list key="set_additional_roles"/>
+      </operator>
+      <operator activated="true" class="decision_tree" compatibility="6.0.002" expanded="true" height="76" name="Decision Tree" width="90" x="447" y="75">
+        <parameter key="criterion" value="information_gain"/>
+        <parameter key="minimal_size_for_split" value="4"/>
+        <parameter key="minimal_leaf_size" value="2"/>
+        <parameter key="minimal_gain" value="0.1"/>
+        <parameter key="maximal_depth" value="20"/>
+        <parameter key="confidence" value="0.25"/>
+        <parameter key="number_of_prepruning_alternatives" value="3"/>
+        <parameter key="no_pre_pruning" value="false"/>
+        <parameter key="no_pruning" value="false"/>
+      </operator>
+      <connect from_op="Read CSV" from_port="output" to_op="Remove Useless Attributes" to_port="example set input"/>
+      <connect from_op="Remove Useless Attributes" from_port="example set output" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Decision Tree" to_port="training set"/>
+      <connect from_op="Decision Tree" from_port="model" to_port="result 1"/>
+      <connect from_op="Decision Tree" from_port="exampleSet" to_port="result 2"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+    </process>
+  </operator>
+</process>
