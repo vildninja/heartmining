@@ -86,13 +86,22 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 				}
 			}
 
+			entries := 0
+
 			for _, cell := range series.Obs {
 				year, err := strconv.ParseInt(cell.Time, 10, 32)
 				if err != nil {
 					fmt.Println(err)
 				}
 
-				row[int(year)] = cell.ObsValue.Value
+				val, err := strconv.ParseFloat(cell.ObsValue.Value, 32)
+				if err != nil {
+					fmt.Println("Parse: ", err)
+				} else {
+					entries++
+				}
+
+				row[int(year)] = strconv.FormatFloat(val, 'f', 2, 32)
 
 				if int(year) < minYear {
 					minYear = int(year)
@@ -102,10 +111,12 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 				}
 			}
 
-			if table[variable+"-"+unit] == nil {
-				table[variable+"-"+unit] = make(map[string]map[int]string)
+			if entries > 0 {
+				if table[variable+"-"+unit] == nil {
+					table[variable+"-"+unit] = make(map[string]map[int]string)
+				}
+				table[variable+"-"+unit][country] = row
 			}
-			table[variable+"-"+unit][country] = row
 		}
 
 		for fname, data := range table {
