@@ -1,0 +1,28 @@
+EVIDUREV,Years
+EVIFHOEV,Difference female-male (years)
+EVIHFEEV,Difference male-female (years)
+NBFEMEPF,Number of female deaths
+NBMALEPH,Number of male deaths
+NBPOPUPC,Number of total deaths
+TXCMFETF,Deaths per 100 000 females (standardised rates)
+TXCMHOTH,Deaths per 100 000 males (standardised rates)
+TXCMILTX,Deaths per 100 000 population (standardised rates)
+RATEPTTX,Deaths per 1 000 live births
+TXMILBTH,Deaths per 1 000 total births
+TXCMMMTX,Deaths per 100 000 live births
+ANNFEMTF,"Years lost, /100 000 females, aged 0-69 years old"
+ANNHOMTH,"Years lost, /100 000 males, aged 0-69 years old"
+ANNTOTTX,"Years lost, /100 000 population, aged 0-69 years old"
+PERCALEF,"% of population with health >= good, crude rate"
+LIVBRTTX,% of total live births
+DENPERNB,Average number of DMFT at age 12
+NOMBRENB,Number
+NEWCASTX,Incidence per 100 000 population
+PERCMTTX,Incidence per 100 000 population
+NBWOMAPF,Number of female cases
+NBMANYPH,Number of male cases
+NBPOPIPC,Number of total cases
+INCITFTF,Incidence per 100 000 females
+INCITHTH,Incidence per 100 000 males
+BLESSETX,Injured per million population
+JOUPANNB,Number of days lost per person per year
