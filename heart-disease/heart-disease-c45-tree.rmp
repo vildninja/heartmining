@@ -14,10 +14,10 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="read_csv" compatibility="6.0.002" expanded="true" height="60" name="Read CSV" width="90" x="45" y="75">
-        <parameter key="csv_file" value="/home/niels/git/heartmining/heart-disease/cleveland-linebreak-fixed.data"/>
+        <parameter key="csv_file" value="/home/niels/git/heartmining/heart-disease/cleveland-formatted.data"/>
         <parameter key="column_separators" value=";"/>
         <parameter key="trim_lines" value="false"/>
-        <parameter key="use_quotes" value="true"/>
+        <parameter key="use_quotes" value="false"/>
         <parameter key="quotes_character" value="&quot;"/>
         <parameter key="escape_character" value="\"/>
         <parameter key="skip_comments" value="false"/>
@@ -28,87 +28,89 @@
         <parameter key="grouping_character" value=","/>
         <parameter key="date_format" value=""/>
         <parameter key="first_row_as_names" value="false"/>
-        <list key="annotations"/>
+        <list key="annotations">
+          <parameter key="0" value="Name"/>
+        </list>
         <parameter key="time_zone" value="SYSTEM"/>
         <parameter key="locale" value="English (United States)"/>
         <parameter key="encoding" value="UTF-8"/>
         <list key="data_set_meta_data_information">
-          <parameter key="0" value="att1.true.integer.attribute"/>
-          <parameter key="1" value="att2.true.integer.attribute"/>
-          <parameter key="2" value="att3.true.integer.attribute"/>
-          <parameter key="3" value="att4.true.integer.attribute"/>
-          <parameter key="4" value="att5.true.integer.attribute"/>
-          <parameter key="5" value="att6.true.integer.attribute"/>
-          <parameter key="6" value="att7.true.integer.attribute"/>
-          <parameter key="7" value="att8.true.integer.attribute"/>
-          <parameter key="8" value="att9.true.integer.attribute"/>
-          <parameter key="9" value="att10.true.integer.attribute"/>
-          <parameter key="10" value="att11.true.integer.attribute"/>
-          <parameter key="11" value="att12.true.integer.attribute"/>
-          <parameter key="12" value="att13.true.integer.attribute"/>
-          <parameter key="13" value="att14.true.integer.attribute"/>
-          <parameter key="14" value="att15.true.integer.attribute"/>
-          <parameter key="15" value="att16.true.integer.attribute"/>
-          <parameter key="16" value="att17.true.integer.attribute"/>
-          <parameter key="17" value="att18.true.integer.attribute"/>
-          <parameter key="18" value="att19.true.integer.attribute"/>
-          <parameter key="19" value="att20.true.integer.attribute"/>
-          <parameter key="20" value="att21.true.integer.attribute"/>
-          <parameter key="21" value="att22.true.integer.attribute"/>
-          <parameter key="22" value="att23.true.integer.attribute"/>
-          <parameter key="23" value="att24.true.integer.attribute"/>
-          <parameter key="24" value="att25.true.integer.attribute"/>
-          <parameter key="25" value="att26.true.integer.attribute"/>
-          <parameter key="26" value="att27.true.integer.attribute"/>
-          <parameter key="27" value="att28.true.integer.attribute"/>
-          <parameter key="28" value="att29.true.integer.attribute"/>
-          <parameter key="29" value="att30.true.integer.attribute"/>
-          <parameter key="30" value="att31.true.integer.attribute"/>
-          <parameter key="31" value="att32.true.integer.attribute"/>
-          <parameter key="32" value="att33.true.integer.attribute"/>
-          <parameter key="33" value="att34.true.integer.attribute"/>
-          <parameter key="34" value="att35.true.integer.attribute"/>
-          <parameter key="35" value="att36.true.integer.attribute"/>
-          <parameter key="36" value="att37.true.integer.attribute"/>
-          <parameter key="37" value="att38.true.integer.attribute"/>
-          <parameter key="38" value="att39.true.integer.attribute"/>
-          <parameter key="39" value="att40.true.integer.attribute"/>
-          <parameter key="40" value="att41.true.integer.attribute"/>
-          <parameter key="41" value="att42.true.integer.attribute"/>
-          <parameter key="42" value="att43.true.integer.attribute"/>
-          <parameter key="43" value="att44.true.integer.attribute"/>
-          <parameter key="44" value="att45.true.integer.attribute"/>
-          <parameter key="45" value="att46.true.integer.attribute"/>
-          <parameter key="46" value="att47.true.integer.attribute"/>
-          <parameter key="47" value="att48.true.integer.attribute"/>
-          <parameter key="48" value="att49.true.integer.attribute"/>
-          <parameter key="49" value="att50.true.integer.attribute"/>
-          <parameter key="50" value="att51.true.integer.attribute"/>
-          <parameter key="51" value="att52.true.integer.attribute"/>
-          <parameter key="52" value="att53.true.integer.attribute"/>
-          <parameter key="53" value="att54.true.integer.attribute"/>
-          <parameter key="54" value="att55.true.integer.attribute"/>
-          <parameter key="55" value="att56.true.integer.attribute"/>
-          <parameter key="56" value="att57.true.integer.attribute"/>
-          <parameter key="57" value="att58.true.polynominal.attribute"/>
-          <parameter key="58" value="att59.true.integer.attribute"/>
-          <parameter key="59" value="att60.true.integer.attribute"/>
-          <parameter key="60" value="att61.true.integer.attribute"/>
-          <parameter key="61" value="att62.true.integer.attribute"/>
-          <parameter key="62" value="att63.true.integer.attribute"/>
-          <parameter key="63" value="att64.true.integer.attribute"/>
-          <parameter key="64" value="att65.true.integer.attribute"/>
-          <parameter key="65" value="att66.true.integer.attribute"/>
-          <parameter key="66" value="att67.true.integer.attribute"/>
-          <parameter key="67" value="att68.true.integer.attribute"/>
-          <parameter key="68" value="att69.true.integer.attribute"/>
-          <parameter key="69" value="att70.true.integer.attribute"/>
-          <parameter key="70" value="att71.true.integer.attribute"/>
-          <parameter key="71" value="att72.true.integer.attribute"/>
-          <parameter key="72" value="att73.true.integer.attribute"/>
-          <parameter key="73" value="att74.true.integer.attribute"/>
-          <parameter key="74" value="att75.true.integer.attribute"/>
-          <parameter key="75" value="att76.true.attribute_value.attribute"/>
+          <parameter key="0" value="patient identification number.true.integer.attribute"/>
+          <parameter key="1" value="social security number (I replaced this with a dummy value of 0).true.integer.attribute"/>
+          <parameter key="2" value="age in years.true.integer.attribute"/>
+          <parameter key="3" value="sex (1 = male, 0 = female).true.integer.attribute"/>
+          <parameter key="4" value="chest pain location (1 = substernal, 0 = otherwise).true.integer.attribute"/>
+          <parameter key="5" value="(1 = provoked by exertion, 0 = otherwise).true.integer.attribute"/>
+          <parameter key="6" value="(1 = relieved after rest, 0 = otherwise).true.integer.attribute"/>
+          <parameter key="7" value="(sum of 5, 6, and 7).true.integer.attribute"/>
+          <parameter key="8" value="chest pain type.true.integer.attribute"/>
+          <parameter key="9" value="resting blood pressure (in mm Hg on admission to the .true.integer.attribute"/>
+          <parameter key="10" value="htn.true.integer.attribute"/>
+          <parameter key="11" value="serum cholestoral in mg/dl.true.integer.attribute"/>
+          <parameter key="12" value="I believe this is 1 = yes, 0 = no (is or is not a smoker).true.integer.attribute"/>
+          <parameter key="13" value="(cigarettes per day).true.integer.attribute"/>
+          <parameter key="14" value="(number of years as a smoker).true.integer.attribute"/>
+          <parameter key="15" value="(fasting blood sugar &gt; 120 mg/dl)  (1 = true, 0 = false).true.integer.attribute"/>
+          <parameter key="16" value="(1 = history of diabetes, 0 = no such history).true.integer.attribute"/>
+          <parameter key="17" value="family history of coronary artery disease (1 = yes, 0 = no).true.integer.attribute"/>
+          <parameter key="18" value="resting electrocardiographic results.true.integer.attribute"/>
+          <parameter key="19" value="(month of exercise ECG reading).true.integer.attribute"/>
+          <parameter key="20" value="(day of exercise ECG reading).true.integer.attribute"/>
+          <parameter key="21" value="(year of exercise ECG reading).true.integer.attribute"/>
+          <parameter key="22" value="(digitalis used furing exercise ECG: 1 = yes, 0 = no).true.integer.attribute"/>
+          <parameter key="23" value="(Beta blocker used during exercise ECG: 1 = yes, 0 = no).true.integer.attribute"/>
+          <parameter key="24" value="(nitrates used during exercise ECG: 1 = yes, 0 = no).true.integer.attribute"/>
+          <parameter key="25" value="(calcium channel blocker used during exercise ECG: 1 = yes, 0 = no).true.integer.attribute"/>
+          <parameter key="26" value="(diuretic used used during exercise ECG: 1 = yes, 0 = no).true.integer.attribute"/>
+          <parameter key="27" value="exercise protocol.true.integer.attribute"/>
+          <parameter key="28" value="duration of exercise test in minutes.true.integer.attribute"/>
+          <parameter key="29" value="time when ST measure depression was noted.true.integer.attribute"/>
+          <parameter key="30" value="mets achieved.true.integer.attribute"/>
+          <parameter key="31" value="maximum heart rate achieved.true.integer.attribute"/>
+          <parameter key="32" value="resting heart rate.true.integer.attribute"/>
+          <parameter key="33" value="peak exercise blood pressure (first of 2 parts).true.integer.attribute"/>
+          <parameter key="34" value="peak exercise blood pressure (second of 2 parts).true.integer.attribute"/>
+          <parameter key="35" value="dummy.true.integer.attribute"/>
+          <parameter key="36" value="resting blood pressure.true.integer.attribute"/>
+          <parameter key="37" value="exercise induced angina (1 = yes, 0 = no).true.integer.attribute"/>
+          <parameter key="38" value="(1 = yes, 0 = no).true.integer.attribute"/>
+          <parameter key="39" value="= ST depression induced by exercise relative to rest.true.integer.attribute"/>
+          <parameter key="40" value="the slope of the peak exercise ST segment.true.integer.attribute"/>
+          <parameter key="41" value="height at rest.true.integer.attribute"/>
+          <parameter key="42" value="height at peak exercise.true.integer.attribute"/>
+          <parameter key="43" value="number of major vessels (0-3) colored by flourosopy.true.integer.attribute"/>
+          <parameter key="44" value="irrelevant.true.integer.attribute"/>
+          <parameter key="45" value="irrelevant1.true.integer.attribute"/>
+          <parameter key="46" value="rest raidonuclid (sp?) ejection fraction.true.integer.attribute"/>
+          <parameter key="47" value="rest wall (sp?) motion abnormality.true.integer.attribute"/>
+          <parameter key="48" value="exercise radinalid (sp?) ejection fraction.true.integer.attribute"/>
+          <parameter key="49" value="exercise wall (sp?) motion .true.integer.attribute"/>
+          <parameter key="50" value="3 = normal, 6 = fixed defect, 7 = reversable defect.true.integer.attribute"/>
+          <parameter key="51" value="not used.true.integer.attribute"/>
+          <parameter key="52" value="not used1.true.integer.attribute"/>
+          <parameter key="53" value="not used2.true.integer.attribute"/>
+          <parameter key="54" value="month of cardiac cath (sp?)  (perhaps &quot;call&quot;).true.integer.attribute"/>
+          <parameter key="55" value="day of cardiac cath (sp?).true.integer.attribute"/>
+          <parameter key="56" value="year of cardiac cath (sp?).true.integer.attribute"/>
+          <parameter key="57" value="diagnosis of heart disease (angiographic disease status).true.polynominal.attribute"/>
+          <parameter key="58" value="lmt.true.integer.attribute"/>
+          <parameter key="59" value="ladprox.true.integer.attribute"/>
+          <parameter key="60" value="laddist.true.integer.attribute"/>
+          <parameter key="61" value="diag.true.integer.attribute"/>
+          <parameter key="62" value="cxmain.true.integer.attribute"/>
+          <parameter key="63" value="ramus.true.integer.attribute"/>
+          <parameter key="64" value="om1.true.integer.attribute"/>
+          <parameter key="65" value="om2.true.integer.attribute"/>
+          <parameter key="66" value="rcaprox.true.integer.attribute"/>
+          <parameter key="67" value="rcadist.true.integer.attribute"/>
+          <parameter key="68" value="not used3.true.integer.attribute"/>
+          <parameter key="69" value="not used4.true.integer.attribute"/>
+          <parameter key="70" value="not used5.true.integer.attribute"/>
+          <parameter key="71" value="not used6.true.integer.attribute"/>
+          <parameter key="72" value="not used7.true.integer.attribute"/>
+          <parameter key="73" value="not used8.true.integer.attribute"/>
+          <parameter key="74" value="not used9.true.integer.attribute"/>
+          <parameter key="75" value="last name of patient.true.attribute_value.attribute"/>
         </list>
         <parameter key="read_not_matching_values_as_missings" value="true"/>
         <parameter key="datamanagement" value="double_array"/>
@@ -120,7 +122,7 @@
         <parameter key="nominal_useless_below" value="0.0"/>
       </operator>
       <operator activated="true" class="set_role" compatibility="6.0.002" expanded="true" height="76" name="Set Role" width="90" x="313" y="75">
-        <parameter key="attribute_name" value="att58"/>
+        <parameter key="attribute_name" value="diagnosis of heart disease (angiographic disease status)"/>
         <parameter key="target_role" value="label"/>
         <list key="set_additional_roles"/>
       </operator>

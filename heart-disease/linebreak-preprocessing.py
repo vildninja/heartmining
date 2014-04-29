@@ -1,7 +1,14 @@
 import re
 
+# Open target output file
+f_out = open("cleveland-formatted.data", "w")
+
+# Read overall heart-disease header and add to first line
+f_in = open("heart-disease-labels-fixed.data", "r")
+f_out.write(f_in.next() + "\n")
+
+# Read, parse and format data
 f_in = open("cleveland-utf8.data", "r")
-f_out = open("cleveland-linebreak-fixed.data", "w")
 
 row_count = 0
 attr_count = 0
