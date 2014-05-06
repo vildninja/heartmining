@@ -167,6 +167,20 @@ func NewDataRow(country string) *DataRow {
 	return dr
 }
 
+func (d *DataRow) CalcSpan() int {
+	min := 12
+	max := -1
+	for y := range d.cells {
+		if y < min {
+			min = y
+		}
+		if y > max {
+			max = y
+		}
+	}
+	return max - min
+}
+
 func (d *DataRow) CalcSlope() {
 	first := -1
 	last := -1
@@ -275,11 +289,13 @@ func InterpolateCSV(path string, info os.FileInfo, err error) error {
 		fmt.Fprintln(output, header)
 
 		for r := range rows {
-			fmt.Fprint(output, r.country)
-			for i := 0; i < 12; i++ {
-				fmt.Fprint(output, ","+strconv.FormatFloat(float64(r.GetCell(i)), 'f', 2, 32))
+			if r.CalcSpan() > 3 {
+				fmt.Fprint(output, r.country)
+				for i := 0; i < 12; i++ {
+					fmt.Fprint(output, ","+strconv.FormatFloat(float64(r.GetCell(i)), 'f', 2, 32))
+				}
+				fmt.Fprint(output, "\n")
 			}
-			fmt.Fprint(output, "\n")
 		}
 	}
 
