@@ -78,7 +78,7 @@
         3 = akinesis or dyskmem (sp?)
      49 exeref: exercise radinalid (sp?) ejection fraction
      50 exerwm: exercise wall (sp?) motion 
-     51 thal: 3 = normal, 6 = fixed defect, 7 = reversable defect
+     51 thal: thallium heart scan (3 = normal, 6 = fixed defect, 7 = reversable defect)
      52 thalsev: not used
      53 thalpul: not used
      54 earlobe: not used
