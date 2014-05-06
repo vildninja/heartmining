@@ -149,19 +149,18 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
         <process expanded="true">
-          <operator activated="true" class="decision_tree" compatibility="6.0.003" expanded="true" height="76" name="Decision Tree" width="90" x="112" y="30">
-            <parameter key="criterion" value="information_gain"/>
-            <parameter key="minimal_size_for_split" value="4"/>
-            <parameter key="minimal_leaf_size" value="2"/>
-            <parameter key="minimal_gain" value="0.1"/>
-            <parameter key="maximal_depth" value="20"/>
-            <parameter key="confidence" value="0.25"/>
-            <parameter key="number_of_prepruning_alternatives" value="3"/>
-            <parameter key="no_pre_pruning" value="false"/>
-            <parameter key="no_pruning" value="false"/>
+          <operator activated="true" class="weka:W-J48" compatibility="5.3.001" expanded="true" height="76" name="W-J48" width="90" x="45" y="30">
+            <parameter key="U" value="false"/>
+            <parameter key="C" value="0.25"/>
+            <parameter key="M" value="2.0"/>
+            <parameter key="R" value="false"/>
+            <parameter key="B" value="false"/>
+            <parameter key="S" value="false"/>
+            <parameter key="L" value="false"/>
+            <parameter key="A" value="false"/>
           </operator>
-          <connect from_port="training" to_op="Decision Tree" to_port="training set"/>
-          <connect from_op="Decision Tree" from_port="model" to_port="model"/>
+          <connect from_port="training" to_op="W-J48" to_port="training set"/>
+          <connect from_op="W-J48" from_port="model" to_port="model"/>
           <portSpacing port="source_training" spacing="0"/>
           <portSpacing port="sink_model" spacing="0"/>
           <portSpacing port="sink_through 1" spacing="0"/>
