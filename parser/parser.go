@@ -1,11 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"encoding/xml"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 )
 
 type XMLMessage struct {
@@ -47,7 +49,14 @@ type XMLObsValue struct {
 }
 
 func main() {
-	filepath.Walk(".", WalkFunc)
+	err := filepath.Walk(".", WalkFunc)
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = filepath.Walk(".", InterpolateCSV)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func WalkFunc(path string, info os.FileInfo, err error) error {
@@ -143,4 +152,136 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 		}
 	}
 	return err
+}
+
+type DataRow struct {
+	country  string
+	cells    map[int]float32
+	avgSlope float32
+}
+
+func NewDataRow(country string) *DataRow {
+	dr := new(DataRow)
+	dr.country = country
+	dr.cells = make(map[int]float32)
+	return dr
+}
+
+func (d *DataRow) CalcSlope() {
+	first := -1
+	last := -1
+	for i := 0; i < 12; i++ {
+		if _, ok := d.cells[i]; ok {
+			if first < 0 {
+				first = i
+			}
+			last = i
+		}
+	}
+
+	if last == first {
+		d.avgSlope = 0
+		return
+	}
+
+	fv := d.cells[first]
+	lv := d.cells[last]
+	d.avgSlope = (lv - fv) / float32(last-first)
+}
+
+func (d *DataRow) GetCell(i int) float32 {
+
+	if v, ok := d.cells[i]; ok {
+		return v
+	}
+
+	before := -1
+	for b := i - 1; b >= 0; b-- {
+		if _, ok := d.cells[b]; ok {
+			before = b
+			break
+		}
+	}
+
+	after := -1
+	for a := i + 1; a < 12; a++ {
+		if _, ok := d.cells[a]; ok {
+			after = a
+			break
+		}
+	}
+
+	if before >= 0 && after >= 0 {
+		b := d.cells[before]
+		a := d.cells[after]
+		inc := (a - b) / float32(after-before)
+		dist := float32(i - before)
+
+		return b + inc*dist
+	}
+
+	if before >= 0 {
+		b := d.cells[before]
+		dist := float32(i - before)
+		return b + d.avgSlope*dist
+	}
+
+	if after >= 0 {
+		a := d.cells[after]
+		dist := float32(after - i)
+		return a - d.avgSlope*dist
+	}
+
+	return 0
+}
+
+func InterpolateCSV(path string, info os.FileInfo, err error) error {
+	if filepath.Ext(path) == ".csv" {
+		file, err := os.Open(path)
+		defer file.Close()
+
+		if err != nil {
+			return err
+		}
+		scanner := bufio.NewScanner(file)
+
+		rows := make(map[*DataRow]bool)
+
+		scanner.Scan()
+		header := scanner.Text()
+
+		for scanner.Scan() {
+			row := strings.Split(scanner.Text(), ",")
+
+			data := NewDataRow(row[0])
+			for i := 1; i < len(row); i++ {
+				if f, err := strconv.ParseFloat(row[i], 32); err == nil {
+					data.cells[i-1] = float32(f)
+				}
+			}
+			rows[data] = true
+			data.CalcSlope()
+		}
+
+		fmt.Println(filepath.Dir(path) + "/interpolated/" + filepath.Base(path))
+
+		output, err := os.Create(filepath.Dir(path) + "/interpolated/" + filepath.Base(path))
+		defer output.Close()
+
+		if err != nil {
+			return err
+		}
+
+		fmt.Fprintln(output, header)
+
+		for r := range rows {
+			fmt.Fprint(output, r.country)
+			for i := 0; i < 12; i++ {
+				fmt.Fprint(output, ","+strconv.FormatFloat(float64(r.GetCell(i)), 'f', 2, 32))
+			}
+			fmt.Fprint(output, "\n")
+		}
+	}
+
+	return nil
 }
