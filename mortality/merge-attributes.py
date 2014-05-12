@@ -37,7 +37,7 @@ files = []
 root = "../parser/interpolated/"
 for f in os.listdir(root):
 	path = root + f
-	if(re.search("Health_stats\.xml\-([A-Z0-9]+)\-([A-Z0-9]+)\.csv", path) != None):
+	if(re.search("(?:Health_stats|Non_medical)\.xml\-([A-Z0-9]+)\-([A-Z0-9]+)\.csv", path) != None):
 		if(path not in files):
 			files.append(path)
 
@@ -82,20 +82,34 @@ labelmap = dict()
 for line in f_in:
 	match_c = re.search("([A-Z]+),\"?(.+)\"?", line)
 	labelmap[match_c.group(1)] = match_c.group(2)
+f_in.close()
 
-f_in2 = open("../parser/HEALTH_STAT_LABELS_VAR.csv", "r")
-varmap = dict()
-for line in f_in2:
+f_in = open("../parser/HEALTH_STAT_LABELS_VAR.csv", "r")
+for line in f_in:
 	match_c = re.search("\"([A-Z0-9]+)\",\"(.+)\"", line)
-	varmap[match_c.group(1)] = match_c.group(2)
+	labelmap[match_c.group(1)] = match_c.group(2)
+f_in.close()
+
+f_in = open("../parser/NON_MEDICAL_LABELS.csv", "r")
+for line in f_in:
+	match_c = re.search("\"([A-Z0-9]+)\",\"(.+)\"", line)
+	labelmap[match_c.group(1)] = match_c.group(2)
+f_in.close()
+
+f_in = open("../parser/NON_MEDICAL_LABELS_VAR.csv", "r")
+varmap = dict()
+for line in f_in:
+	match_c = re.search("\"([A-Z0-9]+)\",\"(.+)\"", line)
+	labelmap[match_c.group(1)] = match_c.group(2)
+f_in.close()
 
 
 headerstr = "Country;Year;"
 for fl in files:
-	match_c = re.search("Health_stats\.xml\-([A-Z0-9]+)\-([A-Z0-9]+)\.csv", fl)
+	match_c = re.search("(?:Health_stats|Non_medical)\.xml\-([A-Z0-9]+)\-([A-Z0-9]+)\.csv", fl)
 	varlabel = match_c.group(1)
 	label = match_c.group(2)
-	detailed = "{0} [{1}]".format(varmap[varlabel], labelmap[label])
+	detailed = "{0} [{1}]".format(labelmap[varlabel], labelmap[label])
 	headerstr += "{0};".format(detailed)
 	#print detailed
 headerstr = headerstr.rstrip(";")
@@ -113,6 +127,6 @@ for ccode in countries.keys():
 		csv += "\n"
 
 # Output to csv
-f_out = open("Health_stats.xml-interpolated-merged.csv", "w")
+f_out = open("Health_stats_and_non_medical.xml-interpolated-merged.csv", "w")
 f_out.write(headerstr)
 f_out.write(csv)
