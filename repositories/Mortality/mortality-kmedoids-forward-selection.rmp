@@ -75,7 +75,7 @@
             <parameter key="measure_types" value="NumericalMeasures"/>
             <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
             <parameter key="nominal_measure" value="NominalDistance"/>
-            <parameter key="numerical_measure" value="DiceSimilarity"/>
+            <parameter key="numerical_measure" value="EuclideanDistance"/>
             <parameter key="divergence" value="GeneralizedIDivergence"/>
             <parameter key="kernel_type" value="radial"/>
             <parameter key="kernel_gamma" value="1.0"/>
@@ -91,7 +91,7 @@
             <parameter key="measure_types" value="NumericalMeasures"/>
             <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
             <parameter key="nominal_measure" value="NominalDistance"/>
-            <parameter key="numerical_measure" value="DiceSimilarity"/>
+            <parameter key="numerical_measure" value="EuclideanDistance"/>
             <parameter key="divergence" value="GeneralizedIDivergence"/>
             <parameter key="kernel_type" value="radial"/>
             <parameter key="kernel_gamma" value="1.0"/>
