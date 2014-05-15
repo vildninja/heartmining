@@ -163,7 +163,7 @@
                 <parameter key="minimal_gain" value="0.1"/>
                 <parameter key="maximal_depth" value="20"/>
                 <parameter key="confidence" value="0.25"/>
-                <parameter key="number_of_prepruning_alternatives" value="3"/>
+                <parameter key="number_of_prepruning_alternatives" value="8"/>
                 <parameter key="no_pre_pruning" value="false"/>
                 <parameter key="no_pruning" value="false"/>
               </operator>
