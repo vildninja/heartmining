@@ -297,9 +297,9 @@ func (svg *SVG) Generate(destination string) {
 					for i := range elem.Attr {
 						if elem.Attr[i].Name.Local == "style" {
 							if ok {
-								elem.Attr[i].Value = "fill:" + color
+								elem.Attr[i].Value = "fill:" + color + ";fill-opacity: 1;stroke: #000000;stroke-opacity: 1;stroke-width: 0.99986997;"
 							} else {
-								elem.Attr[i].Value = "fill:#ffffff"
+								elem.Attr[i].Value = "fill:#ffffff;fill-opacity: 1;stroke: #000000;stroke-opacity: 1;stroke-width: 0.99986997;"
 							}
 							break
 						}
@@ -318,11 +318,11 @@ func (svg *SVG) Generate(destination string) {
 			if old != "AQ" {
 				encoder.EncodeToken(elem)
 			}
-		case xml.CharData:
-			if land != "AQ" {
-				elem = []byte(strings.Replace(string(elem), "\n", "", -1))
-				encoder.EncodeToken(elem)
-			}
+			//case xml.CharData:
+			//	if land != "AQ" {
+			//		elem = []byte(strings.Replace(string(elem), "\n", "", -1))
+			//		encoder.EncodeToken(elem)
+			//	}
 		}
 
 	}
