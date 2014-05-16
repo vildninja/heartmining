@@ -7,35 +7,10 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 -500 2752.766 2537.631"
+   viewBox="-100 -450 3000 2000"
    version="1.0"
-   height="476.7276"
-   width="634.26801"
-   id="svg1926"
-   sodipodi:version="0.32"
-   inkscape:version="0.46"
-   sodipodi:docname="World_Blank_Map_(Mercator_projection).svg"
-   sodipodi:docbase="C:\Documents and Settings\XP\Meus documentos\Minhas imagens"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
-  <sodipodi:namedview
-     inkscape:window-height="760"
-     inkscape:window-width="611"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     guidetolerance="10.0"
-     gridtolerance="10.0"
-     objecttolerance="10.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
-     pagecolor="#ffffff"
-     id="base"
-     inkscape:zoom="2.2031548"
-     inkscape:cx="359.72576"
-     inkscape:cy="235.58997"
-     inkscape:window-x="663"
-     inkscape:window-y="-2"
-     inkscape:current-layer="svg1926"
-     showgrid="false" />
+   height="800"
+   width="1400">
   <metadata
      id="metadata24111">
     <rdf:RDF>
@@ -101,10 +76,10 @@
  */
 .land
 {
-   fill: #b9b9b9;
+   fill: #ffffff;
    fill-opacity: 1;
    stroke: #000000;
-   stroke-opacity: 5;
+   stroke-opacity: 1;
    stroke-width: 0.99986997;
    stroke-miterlimit: 3.97446823;
    stroke-dasharray: none;
@@ -173,7 +148,7 @@
 {
    fill:#ffffff;
    fill-opacity:1;
-   stroke:#ffffff;
+   stroke:#000000;
    stroke-opacity:1;
    stroke-width:0.99986997;
    stroke-miterlimit:3.97446823;

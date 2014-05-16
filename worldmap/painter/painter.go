@@ -270,7 +270,7 @@ func (svg *SVG) Generate(destination string) {
 	encoder := xml.NewEncoder(newFile)
 	encoder.Indent("", "	")
 
-	head := "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:sodipodi=\"http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd\" xmlns:inkscape=\"http://www.inkscape.org/namespaces/inkscape\" viewBox=\"0 -500 2752.766 2537.631\" version=\"1.0\" height=\"954.4543\" width=\"1268.53602\" id=\"svg1926\" xmlns:sodipodi-0.dtd=\"http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd\" sodipodi-0.dtd:version=\"0.32\" inkscape:version=\"0.46\" sodipodi-0.dtd:docname=\"World_Blank_Map_(Mercator_projection).svg\" sodipodi-0.dtd:docbase=\"C:\\Documents and Settings\\XP\\Meus documentos\\Minhas imagens\" inkscape:output_extension=\"org.inkscape.output.svg.inkscape\">"
+	head := "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns:sodipodi=\"http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd\" xmlns:inkscape=\"http://www.inkscape.org/namespaces/inkscape\" viewBox=\"-100 -450 3000 2000\" version=\"1.0\" height=\"800\" width=\"1400\">"
 
 	land := ""
 
@@ -305,17 +305,24 @@ func (svg *SVG) Generate(destination string) {
 						}
 					}
 				}
-				encoder.EncodeToken(elem)
+				if land != "AQ" {
+					encoder.EncodeToken(elem)
+				}
 			}
 
 		case xml.EndElement:
+			old := land
 			if elem.Name.Local == "g" {
 				land = ""
 			}
-			encoder.EncodeToken(elem)
+			if old != "AQ" {
+				encoder.EncodeToken(elem)
+			}
 		case xml.CharData:
-			elem = []byte(strings.Replace(string(elem), "\n", "", -1))
-			encoder.EncodeToken(elem)
+			if land != "AQ" {
+				elem = []byte(strings.Replace(string(elem), "\n", "", -1))
+				encoder.EncodeToken(elem)
+			}
 		}
 
 	}
