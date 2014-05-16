@@ -11,7 +11,7 @@ for line in f_in:
 		out = ";"
 	else:
 		first = False
-	match_c = re.search("^\s+([0-9]+)\s[a-z0-9:]+\s(.+)$", line)
+	match_c = re.search("^\s+([0-9]+)\s([a-z0-9:]+\s.+)$", line)
 	if (match_c != None):
 		attrid = match_c.group(1)
 		label = match_c.group(2)
