@@ -299,7 +299,7 @@ func (svg *SVG) Generate(destination string) {
 							if ok {
 								elem.Attr[i].Value = "fill:" + color
 							} else {
-								elem.Attr[i].Value = ""
+								elem.Attr[i].Value = "fill:#ffffff"
 							}
 							break
 						}

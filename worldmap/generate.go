@@ -49,6 +49,7 @@ func NewCountry(name string) *Country {
 	c := new(Country)
 	c.clusters = make(map[string]int)
 	c.name = codes[name]
+	c.max = ""
 	return c
 }
 
@@ -123,7 +124,9 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 					max = count
 				}
 			}
+
 			svg.Colors[co.name] = clusterColors[co.max]
+
 		}
 
 		svg.Generate(path + ".svg")
