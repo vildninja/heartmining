@@ -292,7 +292,7 @@ func (svg *SVG) Generate(destination string) {
 				if land != "" {
 					color, ok := svg.Colors[land]
 					if ok {
-						fmt.Println(land, color)
+						//fmt.Println(land, color)
 					}
 					for i := range elem.Attr {
 						if elem.Attr[i].Name.Local == "style" {

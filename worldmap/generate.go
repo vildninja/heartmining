@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/lucasb-eyer/go-colorful"
 	"github.com/vildninja/heartmining/worldmap/painter"
 	"os"
 	"path/filepath"
@@ -11,22 +10,30 @@ import (
 )
 
 var codes map[string]string
-var clusterColors []colorful.Color
+var clusterColors map[string]string
 
 func main() {
 	codes = painter.CountryCodes()
-	clusterColors = []colorful.Color{
-		colorful.Color{1, 0, 0},
-		colorful.Color{0, 1, 0},
-		colorful.Color{0, 0, 1},
-		colorful.Color{1, 1, 0},
-		colorful.Color{1, 0, 1},
-		colorful.Color{0, 1, 1},
-		colorful.Color{1, 1, 1},
-		colorful.Color{0, 0, 0},
+	clusterColors = make(map[string]string)
+
+	colorFile, err := os.Open("colors.csv")
+	if err != nil {
+		fmt.Println(err)
+	}
+	colorReader := bufio.NewReader(colorFile)
+	// ignore header
+	colorReader.ReadString('\n')
+	for {
+		line, _ := colorReader.ReadString('\n')
+		row := strings.Split(strings.TrimSpace(line), ";")
+		if len(row) != 2 {
+			break
+		}
+		fmt.Println(row[0] + " : " + row[1])
+		clusterColors[row[0]] = row[1]
 	}
 
-	err := filepath.Walk(".", WalkFunc)
+	err = filepath.Walk(".", WalkFunc)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -57,7 +64,7 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 		reader := bufio.NewReader(file)
 
 		line, err := reader.ReadString('\n')
-		header := strings.TrimSpace(strings.Split(line, ";"))
+		header := strings.Split(strings.TrimSpace(line), ";")
 
 		fmt.Printf("Header: %v \n", len(header))
 
@@ -77,11 +84,16 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 			}
 		}
 
+		if country == -1 || cluster == -1 {
+			fmt.Println(path + " not the right format")
+			return nil
+		}
+
 		fmt.Printf("cou: %v, clu: %v \n", country, cluster)
 
 		for {
 			line, err = reader.ReadString('\n')
-			row := strings.Split(line, ";")
+			row := strings.Split(strings.TrimSpace(line), ";")
 			if len(row) != len(header) {
 				break
 			}
@@ -98,7 +110,7 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 
 			c.clusters[row[cluster]]++
 
-			fmt.Printf(c.name+" added to "+row[cluster]+" len(clusters) : %v \n", len(clusters))
+			//fmt.Printf(c.name+" added to "+row[cluster]+" len(clusters) : %v \n", len(clusters))
 		}
 
 		svg := painter.NewSVG()
@@ -111,7 +123,7 @@ func WalkFunc(path string, info os.FileInfo, err error) error {
 					max = count
 				}
 			}
-			svg.Colors[co.name] = clusterColors[clusters[co.max]].Hex()
+			svg.Colors[co.name] = clusterColors[co.max]
 		}
 
 		svg.Generate(path + ".svg")
