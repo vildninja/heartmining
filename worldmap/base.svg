@@ -63,12 +63,12 @@
 {
    opacity:0;
    fill:#b9b9b9;
-   fill-opacity:1;
+   fill-opacity:0;
    stroke:black;
    stroke-width:0.99986893;
    stroke-miterlimit:3.97446823;
    stroke-dasharray:none;
-   stroke-opacity:1;
+   stroke-opacity:0;
 }
 
 /*

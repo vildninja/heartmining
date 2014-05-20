@@ -109,7 +109,7 @@ func CountryCodes() map[string]string {
 	Codes["IOT"] = "IO"
 	Codes["IRQ"] = "IQ"
 	Codes["IRN"] = "IR"
-	Codes["IS"] = "IS"
+	Codes["ISL"] = "IS"
 	Codes["ITA"] = "IT"
 	Codes["JEY"] = "JE"
 	Codes["JAM"] = "JM"
@@ -281,11 +281,18 @@ func (svg *SVG) Generate(destination string) {
 			if elem.Name.Local == "svg" {
 				fmt.Fprintln(newFile, head)
 			} else {
+				exclude := false
 				for _, attr := range elem.Attr {
 					if attr.Name.Local == "class" {
 						if strings.Contains(attr.Value, "land") {
 							land = strings.ToUpper(attr.Value[5:])
+						} else {
+							_, ok := svg.Colors[land]
+							if strings.Contains(attr.Value, "circle") && !ok {
+								exclude = true
+							}
 						}
+
 						break
 					}
 				}
@@ -305,7 +312,7 @@ func (svg *SVG) Generate(destination string) {
 						}
 					}
 				}
-				if land != "AQ" {
+				if land != "AQ" && !exclude {
 					encoder.EncodeToken(elem)
 				}
 			}
